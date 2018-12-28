@@ -1,5 +1,5 @@
 import Vue, { ComponentOptions } from "vue";
-import AxiosClass from './AxiosClass';
+import AxiosClass from '../http/AxiosClass';
 
 declare module "vue/types/options" {
   interface ComponentOptions<V extends Vue> {

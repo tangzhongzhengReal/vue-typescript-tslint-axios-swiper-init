@@ -1,6 +1,6 @@
 import {AxiosStatic, AxiosRequestConfig, AxiosInstance, CancelStatic, CancelTokenStatic} from 'axios';
 import qs from 'qs';
-import router from './router';
+import router from '../router';
 
 interface AxiosRetry extends AxiosRequestConfig{
   retry?: number;
