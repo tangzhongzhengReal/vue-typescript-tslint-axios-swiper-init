@@ -108,7 +108,7 @@ module.exports = {
         proxy: {
             '/index': {
                 // target: 'http://www.idsome.com',
-                target: 'http://10.1.1.157:92',
+                target: 'http://10.1.1.157:99',
                 // target: 'http://10.1.1.139',
                 changeOrigin: true,
                 pathRewrite: {
@@ -126,7 +126,7 @@ module.exports = {
             },
             '/admin': {
                 // target: 'http://www.idsome.com',
-                target: 'http://10.1.1.157:92',
+                target: 'http://10.1.1.158:92',
                 // target: 'http://10.1.1.139',
                 changeOrigin: true,
                 pathRewrite: {

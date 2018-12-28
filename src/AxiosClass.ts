@@ -1,9 +1,28 @@
-import {AxiosStatic} from 'axios';
+import {AxiosStatic, AxiosRequestConfig, AxiosInstance, CancelStatic, CancelTokenStatic} from 'axios';
 import qs from 'qs';
 import router from './router';
 
+interface AxiosRetry extends AxiosRequestConfig{
+  retry?: number;
+  retryDelay?: number; // 重试延时
+  shouldRetry?: () => boolean;
+}
+
+interface AxiosInstanceMe extends AxiosInstance{
+  defaults: AxiosRetry;
+}
+
+interface AxiosStaticMe extends AxiosInstanceMe {
+  create(config?: AxiosRetry): AxiosInstanceMe;
+  Cancel: CancelStatic;
+  CancelToken: CancelTokenStatic;
+  isCancel(value: any): boolean;
+  all<T>(values: (T | Promise<T>)[]): Promise<T[]>;
+  spread<T, R>(callback: (...args: T[]) => R): (array: T[]) => R;
+}
+
 export default class A {
-    private axios: AxiosStatic;
+    private axios: AxiosStaticMe;
 
     constructor(aa: any) {
         this.axios = aa;
@@ -52,6 +71,7 @@ export default class A {
         this.axios.defaults.retryDelay = 1000; // 重试延时
         this.axios.defaults.shouldRetry = () => true; // 重试条件，默认只要是错误都需要重试
         this.axios.interceptors.response.use(undefined, (err: any) => {
+            console.log(err.config);
             const config = err.config;
             // 判断是否配置了重试
             if (!config || !config.retry) { return Promise.reject(err); }

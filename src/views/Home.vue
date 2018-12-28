@@ -83,14 +83,14 @@
         private mounted() {
             console.log('in mounted');
 
-            // this.$axios.get('/admin/get_proj_list', {})
-            //     .then((response: any) => {
-            //         if (response.data.msg === 'ok') {
-            //             if (response.data.data !== null) {
-            //                 const data = response.data.data;
-            //             }
-            //         }
-            //     });
+            this.$axios.get('/admin/get_proj_list', {})
+                .then((response: any) => {
+                    if (response.data.msg === 'ok') {
+                        if (response.data.data !== null) {
+                            const data = response.data.data;
+                        }
+                    }
+                });
         }
 
     }
